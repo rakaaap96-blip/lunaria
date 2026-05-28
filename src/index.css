@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ivory: #FDFBF7;
+  --color-pearl: #F7F4EE;
+  --color-champagne: #F3E9DD;
+  --color-nude: #EBDFD3;
+  --color-dusty-rose: #D8C3B3;
+  --color-gold-soft: #C6A87F;
+  --color-silver-light: #E8E4DD;
+  --color-charcoal: #2C2A29;
+  --color-warm-black: #1F1D1B;
+  --font-serif: "Cormorant Garamond", serif;
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+}
+
+/* Hanya body & html yang dipaksa tidak scroll horizontal */
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+/* JANGAN sentuh * selector! Biarkan elemen fixed/absolute aman */
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    @apply bg-ivory;
+  }
+  body {
+    @apply font-sans text-charcoal antialiased bg-ivory;
+    line-height: 1.5;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif font-medium tracking-wide;
+  }
+  :focus-visible {
+    @apply outline-none ring-2 ring-gold-soft ring-offset-2 ring-offset-ivory rounded-sm;
+  }
+}
+
+@layer utilities {
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .image-zoom {
+    overflow: hidden;
+  }
+  .image-zoom img {
+    transition: transform 0.5s ease;
+  }
+  .image-zoom:hover img {
+    transform: scale(1.04);
+  }
+}
